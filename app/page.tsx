@@ -134,6 +134,65 @@ export default function Home() {
         </ul>
         <p>© 2026 Komoku. Built for advanced phishing detection.</p>
       </div>
+
+      {/* responsive */}
+      <div className={styles.bottom_nav_bar}>
+        <ul>
+          <li>
+            <Link
+              className={product === "url" || !product ? styles.bnb_on : ""}
+              href={"/?product=url"}
+            >
+              <Image
+                src={"/product-url.webp"}
+                alt="product url icon"
+                width={30}
+                height={30}
+              />
+              URL
+            </Link>
+          </li>
+          <li>
+            <Link
+              className={product === "email" ? styles.bnb_on : ""}
+              href={"/?product=email"}
+            >
+              <Image
+                src={"/product-mail.webp"}
+                alt="product mail icon"
+                width={30}
+                height={30}
+              />
+              Email
+            </Link>
+          </li>
+          <li>
+            <Link
+              className={product === "sms" ? styles.bnb_on : ""}
+              href={"/?product=sms"}
+            >
+              <Image
+                src={"/product-sms.webp"}
+                alt="product sms icon"
+                width={30}
+                height={30}
+              />
+              SMS
+            </Link>
+          </li>
+          <li>
+            <Link href={"https://github.com/daffalde/komokuv2"}>
+              <Image
+                src={"/product-docs.webp"}
+                alt="product sms icon"
+                width={30}
+                height={30}
+              />
+              Docs
+            </Link>
+          </li>
+        </ul>
+      </div>
     </div>
   );
 }

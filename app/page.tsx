@@ -4,10 +4,13 @@ import Image from "next/image";
 import styles from "./page.module.css";
 import Link from "next/link";
 import { useParams, useSearchParams } from "next/navigation";
+import { useState } from "react";
 
 export default function Home() {
   const searchParams = useSearchParams();
   const product = searchParams.get("product");
+
+  const [ProductHover, setProductHover] = useState<boolean>(false);
 
   return (
     <div className="container">
@@ -19,9 +22,86 @@ export default function Home() {
               <Link href={"/"}>Home</Link>
             </li>
             <li>
-              <Link href="/">
-                Product <img src="./drop-down.webp" alt="dropdown icon" />
+              <Link
+                onMouseEnter={() => {
+                  setProductHover(true);
+                }}
+                onMouseLeave={() => {
+                  setProductHover(false);
+                }}
+                href="/"
+              >
+                Product{" "}
+                <img
+                  className={`${styles.navbar_menu_product} ${ProductHover ? styles.navbar_menu_product_true : null}`}
+                  src="./drop-down.webp"
+                  alt="dropdown icon"
+                />
               </Link>
+              <div
+                onMouseEnter={() => {
+                  setProductHover(true);
+                }}
+                onMouseLeave={() => {
+                  setProductHover(false);
+                }}
+                className={`${styles.desktop_navbar_hover} ${ProductHover ? styles.desktop_navbar_hover_show : styles.desktop_navbar_hover_notshow}`}
+              >
+                <ul>
+                  <li>
+                    <Link
+                      className={
+                        product === "url" || !product
+                          ? styles.desktop_navbar_hover_on
+                          : ""
+                      }
+                      href={"/?product=url"}
+                    >
+                      <Image
+                        src={"/product-url.webp"}
+                        alt="product url icon"
+                        width={20}
+                        height={20}
+                      />
+                      URL Scanner
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      className={
+                        product === "email"
+                          ? styles.desktop_navbar_hover_on
+                          : ""
+                      }
+                      href={"/?product=email"}
+                    >
+                      <Image
+                        src={"/product-mail.webp"}
+                        alt="product mail icon"
+                        width={20}
+                        height={20}
+                      />
+                      Email Filter
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      className={
+                        product === "sms" ? styles.desktop_navbar_hover_on : ""
+                      }
+                      href={"/?product=sms"}
+                    >
+                      <Image
+                        src={"/product-sms.webp"}
+                        alt="product sms icon"
+                        width={20}
+                        height={20}
+                      />
+                      SMS Guard
+                    </Link>
+                  </li>
+                </ul>
+              </div>
             </li>
             <li>
               <Link href="/about">About Us</Link>
@@ -53,62 +133,6 @@ export default function Home() {
           </li>
         </ul>
         <p>© 2026 Komoku. Built for advanced phishing detection.</p>
-      </div>
-
-      {/* floating element */}
-      <div className={styles.desktop_navbar_hover}>
-        <ul>
-          <li>
-            <Link
-              className={
-                product === "url" || !product
-                  ? styles.desktop_navbar_hover_on
-                  : ""
-              }
-              href={"/?product=url"}
-            >
-              <Image
-                src={"/product-url.webp"}
-                alt="product url icon"
-                width={20}
-                height={20}
-              />
-              URL Scanner
-            </Link>
-          </li>
-          <li>
-            <Link
-              className={
-                product === "email" ? styles.desktop_navbar_hover_on : ""
-              }
-              href={"/?product=email"}
-            >
-              <Image
-                src={"/product-mail.webp"}
-                alt="product mail icon"
-                width={20}
-                height={20}
-              />
-              Email Filter
-            </Link>
-          </li>
-          <li>
-            <Link
-              className={
-                product === "sms" ? styles.desktop_navbar_hover_on : ""
-              }
-              href={"/?product=sms"}
-            >
-              <Image
-                src={"/product-sms.webp"}
-                alt="product sms icon"
-                width={20}
-                height={20}
-              />
-              SMS Guard
-            </Link>
-          </li>
-        </ul>
       </div>
     </div>
   );

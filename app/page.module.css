@@ -48,12 +48,19 @@
   color: var(--secondary-50-color);
   cursor: pointer;
 }
+.documentation_button:hover {
+  background-color: hsla(0, 0%, 10%, 0.3);
+}
+.documentation_button:active {
+  background-color: hsla(0, 0%, 10%, 0.2);
+}
 .documentation_button img {
   height: 10px;
 }
 
 /* footer____________________________________ */
 .footer {
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -72,4 +79,39 @@
 }
 .footer ul li a:hover {
   text-decoration: underline;
+}
+
+/* floating element______________________ */
+.desktop_navbar_hover {
+}
+
+.desktop_navbar_hover ul {
+  list-style: none;
+  padding: 5px;
+  border: 1px solid var(--secondary-10-color);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+}
+.desktop_navbar_hover ul li a {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  color: var(--secondary-color);
+  text-decoration: none;
+  font-size: 16px;
+  width: 100%;
+  min-width: 200px;
+  padding: 10px;
+  border-radius: 5px;
+  gap: 10px;
+}
+.desktop_navbar_hover_on {
+  background-color: var(--secondary-10-color);
+}
+.desktop_navbar_hover ul li a:hover {
+  background-color: var(--secondary-10-color);
 }

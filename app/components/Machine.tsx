@@ -3,8 +3,9 @@
 import Image from "next/image";
 import style from "./machine.module.css";
 import { useSearchParams } from "next/navigation";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import Loading from "./Loading";
+import { Html5Qrcode } from "html5-qrcode";
 
 type PredictResponse = {
   code: number;
@@ -23,7 +24,8 @@ export default function Machine() {
 
   const [loading, setLoading] = useState<boolean>(false);
 
-  const handleClick = async () => {
+  const handleClick = async (e?: string) => {
+    setHasilErr(false);
     setLoading(true);
     try {
       const res = await fetch(
@@ -33,7 +35,7 @@ export default function Machine() {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ url: url }),
+          body: JSON.stringify({ url: e ?? url }),
         },
       );
 
@@ -46,12 +48,35 @@ export default function Machine() {
     }
   };
 
+  const [hasilErr, setHasilErr] = useState<boolean | undefined>(false);
+
+  function handleQR(e: ChangeEvent<HTMLInputElement>) {
+    setHasilErr(false);
+    setDataApi(null);
+    if (e.target.files) {
+      const fungsiScan = new Html5Qrcode("qr-scan");
+
+      fungsiScan
+        .scanFile(e.target.files[0], true)
+        .then((decodedText) => {
+          handleClick(decodedText);
+        })
+        .catch(() => {
+          setHasilErr(true);
+        });
+    }
+  }
+
   const getColor = (code: number | undefined, alpha = 1) => {
     if (code === 100 || code === 300) return `rgba(0, 184, 18, ${alpha})`;
     if (code === 301) return `rgba(255, 35, 35, ${alpha})`;
     if (code === 201 || code === 200) return `rgba(202, 192, 0, ${alpha})`;
-    return `rgba(144, 85, 253, ${alpha})`;
+    if (hasilErr) return `rgba(144, 85, 253, ${alpha})`;
   };
+
+  function handleAnalyze() {
+    handleClick();
+  }
 
   return (
     <>
@@ -175,9 +200,10 @@ export default function Machine() {
                   height={25}
                 />
                 <p>QR Scan</p>
+                <input type="file" onChange={handleQR} id="qr-scan" />
               </button>
             )}
-            <button onClick={handleClick} className={style.input_analyze}>
+            <button onClick={handleAnalyze} className={style.input_analyze}>
               {loading ? (
                 <Loading />
               ) : (
@@ -191,21 +217,21 @@ export default function Machine() {
             </button>
           </div>
           <div
-            className={`${style.result} ${dataApi ? style.result_show : ""}`}
+            className={`${style.result} ${dataApi || hasilErr ? style.result_show : ""}`}
           >
             <div
               style={{ backgroundColor: getColor(dataApi?.code, 0.1) }}
               className={style.result_title}
             >
               <p style={{ color: getColor(dataApi?.code, 1) }}>
-                {dataApi?.result}
+                {hasilErr ? "No QR Detected" : dataApi?.result}
               </p>
             </div>
 
             <div className={style.result_bar}>
               <div
                 style={{
-                  width: `${dataApi?.code === 200 || dataApi?.code === 201 ? "100" : dataApi?.confidence}%`,
+                  width: `${dataApi?.code === 200 || dataApi?.code === 201 || hasilErr ? "100" : dataApi?.confidence}%`,
                   backgroundColor: getColor(dataApi?.code, 0.4),
                   transition: "2s",
                   transitionDelay: "0.5s",
@@ -215,7 +241,7 @@ export default function Machine() {
             </div>
             <div className={style.result_conf}>
               <p style={{ color: getColor(dataApi?.code, 1) }}>
-                {dataApi?.code === 200 || dataApi?.code === 201
+                {dataApi?.code === 200 || dataApi?.code === 201 || hasilErr
                   ? "-"
                   : dataApi?.confidence}
                 %

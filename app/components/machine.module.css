@@ -185,6 +185,12 @@
   .input_enter {
     padding: 20px;
   }
+  .class_item {
+    width: fit-content;
+  }
+  .class_wrap {
+    width: fit-content;
+  }
 }
 
 /* result______________________________ */

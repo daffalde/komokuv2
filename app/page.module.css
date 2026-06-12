@@ -1,9 +1,14 @@
 .navbar {
   width: 100%;
   height: fit-content;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .navbar_logo {
   height: 30px;
+  cursor: pointer;
+  -webkit-user-drag: none;
 }
 .navbar_menu ul {
   display: flex;
@@ -13,8 +18,58 @@
 .navbar_menu ul li a {
   color: var(--secondary-color);
   text-decoration: none;
-  border: 1px solid black;
   display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
   padding: 10px 20px;
   border-radius: 5px;
+  font-weight: 500;
+}
+.navbar_menu ul li a:hover {
+  background-color: var(--secondary-10-color);
+}
+.navbar_menu ul li a:active {
+  background-color: var(--secondary-50-color);
+}
+.navbar_menu ul li a img {
+  height: 5px;
+}
+.documentation_button {
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 10px;
+  background-color: var(--secondary-10-color);
+  border-radius: 10px;
+  border: none;
+  color: var(--secondary-50-color);
+  cursor: pointer;
+}
+.documentation_button img {
+  height: 10px;
+}
+
+/* footer____________________________________ */
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  opacity: 50%;
+}
+.footer ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.footer ul li a {
+  text-decoration: none;
+  color: var(--secondary-color);
+}
+.footer ul li a:hover {
+  text-decoration: underline;
 }

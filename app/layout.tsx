@@ -5,7 +5,7 @@ import { Inter } from "next/font/google";
 const inter = Inter({ subsets: ["latin"], variable: "--inter" });
 
 export const metadata: Metadata = {
-  title: "Komoku - Your ML Powered Phishing Detector",
+  title: "Komoku - Your AI Powered Phishing Detector",
   description: "Detect phishing links with our machine learning-powered tool",
 };
 

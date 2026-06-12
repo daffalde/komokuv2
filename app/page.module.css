@@ -167,6 +167,7 @@
   background-color: var(--primary-color);
   border-radius: 20px 20px 0 0;
   padding: 20px;
+  display: none;
 }
 .bottom_nav_bar ul {
   list-style: none;
@@ -216,5 +217,8 @@
   }
   .footer {
     margin-bottom: 100px;
+  }
+  .bottom_nav_bar {
+    display: flex;
   }
 }

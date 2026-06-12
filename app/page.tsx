@@ -3,8 +3,9 @@
 import Image from "next/image";
 import styles from "./page.module.css";
 import Link from "next/link";
-import { useParams, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { useState } from "react";
+import Machine from "./components/Machine";
 
 export default function Home() {
   const searchParams = useSearchParams();
@@ -118,6 +119,7 @@ export default function Home() {
           <img src="arrow-documentation.webp" alt="Documentation" />
         </button>
       </div>
+      <Machine />
       <div className={styles.footer}>
         <ul>
           <li>

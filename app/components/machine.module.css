@@ -137,7 +137,9 @@
 }
 
 .input_analyze {
-  padding: 7px;
+  width: 35px;
+  height: 35px;
+  padding: 3px;
   background-color: var(--secondary-color);
   border-radius: 5px;
   display: flex;

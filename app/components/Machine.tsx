@@ -4,6 +4,7 @@ import Image from "next/image";
 import style from "./machine.module.css";
 import { useSearchParams } from "next/navigation";
 import { useState } from "react";
+import Loading from "./Loading";
 
 type PredictResponse = {
   code: number;
@@ -20,7 +21,10 @@ export default function Machine() {
   const [url, setUrl] = useState<string>("");
   const [dataApi, setDataApi] = useState<any>();
 
+  const [loading, setLoading] = useState<boolean>(false);
+
   const handleClick = async () => {
+    setLoading(true);
     try {
       const res = await fetch(
         "https://daffalde-linkphishing.hf.space/predict",
@@ -34,10 +38,11 @@ export default function Machine() {
       );
 
       const data: PredictResponse = await res.json();
-      console.log("API Result:", data);
       setDataApi(data);
+      setLoading(false);
     } catch (err: unknown) {
       console.error("Error:", err);
+      setLoading(false);
     }
   };
 
@@ -45,7 +50,7 @@ export default function Machine() {
     if (code === 100 || code === 300) return `rgba(0, 184, 18, ${alpha})`;
     if (code === 301) return `rgba(255, 35, 35, ${alpha})`;
     if (code === 201 || code === 200) return `rgba(202, 192, 0, ${alpha})`;
-    return `rgba(144, 85, 253, ${alpha})`; // Default
+    return `rgba(144, 85, 253, ${alpha})`;
   };
 
   return (
@@ -145,13 +150,23 @@ export default function Machine() {
           </span>
           <div className={style.input_enter}>
             <textarea
-              className={`${style.text_input} ${product !== "url" ? style.text_input_change : null}`}
+              className={`${style.text_input} ${product === "sms" || product === "email" ? style.text_input_change : null}`}
               name=""
               id=""
               placeholder="Enter your URL/Text...."
               onChange={(e) => setUrl(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  if (product === "url") {
+                    e.preventDefault();
+                    handleClick();
+                  } else {
+                    null;
+                  }
+                }
+              }}
             ></textarea>
-            {product !== "url" ? null : (
+            {product === "sms" || product === "email" ? null : (
               <button className={style.input_scan}>
                 <Image
                   src={"/qr-scan.webp"}
@@ -163,12 +178,16 @@ export default function Machine() {
               </button>
             )}
             <button onClick={handleClick} className={style.input_analyze}>
-              <Image
-                src={"/analyze.webp"}
-                alt="ico analyze"
-                width={20}
-                height={20}
-              />
+              {loading ? (
+                <Loading />
+              ) : (
+                <Image
+                  src={"/analyze.webp"}
+                  alt="ico analyze"
+                  width={20}
+                  height={20}
+                />
+              )}
             </button>
           </div>
           <div

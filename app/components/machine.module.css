@@ -137,7 +137,7 @@
 }
 
 .input_analyze {
-  padding: 5px;
+  padding: 7px;
   background-color: var(--secondary-color);
   border-radius: 5px;
   display: flex;
@@ -145,8 +145,31 @@
   align-items: center;
   transition: 0.3s;
   cursor: pointer;
+  border: none;
 }
 .input_analyze:hover {
   transform: scale(1.05);
   transition: 0.3s;
+}
+
+/* responsive______________________ */
+@media (max-width: 900px) {
+  .machine {
+    align-items: center;
+  }
+  .title_right {
+    display: none;
+  }
+  .title_left {
+    text-align: center;
+  }
+  .input_scan {
+    width: fit-content;
+  }
+  .input_scan p {
+    display: none;
+  }
+  .text_input {
+    font-size: 16px;
+  }
 }

@@ -117,7 +117,7 @@ export default function Machine() {
                   width={25}
                   height={25}
                 />
-                QR Scan
+                <p>QR Scan</p>
               </button>
             )}
             <button className={style.input_analyze}>

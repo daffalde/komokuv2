@@ -136,7 +136,7 @@
 .input_scan:active {
   background-color: var(--secondary-10-color);
 }
-.input_scan input {
+.input_image {
   position: absolute;
   border: 1px solid black;
   width: 100%;

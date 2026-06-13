@@ -193,7 +193,10 @@ export default function Machine() {
               }}
             ></textarea>
             {getProductType === "sms" || getProductType === "email" ? null : (
-              <button className={style.input_scan}>
+              <button
+                style={{ position: "relative" }}
+                className="secondary_button"
+              >
                 <Image
                   src={"/qr-scan.webp"}
                   alt="ico qr scanner"
@@ -201,18 +204,27 @@ export default function Machine() {
                   height={25}
                 />
                 <p>QR Scan</p>
-                <input type="file" onChange={handleQR} id="qr-scan" />
+                <input
+                  className={style.input_image}
+                  type="file"
+                  onChange={handleQR}
+                  id="qr-scan"
+                />
               </button>
             )}
-            <button onClick={handleAnalyze} className={style.input_analyze}>
+            <button
+              style={{ padding: "5px" }}
+              onClick={handleAnalyze}
+              className="main-button"
+            >
               {loading ? (
                 <Loading />
               ) : (
                 <Image
                   src={"/analyze.webp"}
                   alt="ico analyze"
-                  width={20}
-                  height={20}
+                  width={25}
+                  height={25}
                 />
               )}
             </button>

@@ -1,5 +1,5 @@
 import styles from "./about.module.css";
-import { motion, Variant, Variants } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 
 export default function About() {
   const aboutFeature = [

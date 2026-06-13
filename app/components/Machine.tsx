@@ -5,6 +5,7 @@ import style from "./machine.module.css";
 import { ChangeEvent, useEffect, useState } from "react";
 import Loading from "./Loading";
 import { Html5Qrcode } from "html5-qrcode";
+import { motion, Variants } from "framer-motion";
 
 type PredictResponse = {
   code: number;
@@ -79,10 +80,28 @@ export default function Machine() {
     handleClick();
   }
 
+  const fadeUpVariants: Variants = {
+    hidden: {
+      opacity: 0,
+      y: 40,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+    },
+  };
+
   return (
     <>
       <div className={style.machine}>
-        <div className={`${style.class} `}>
+        <motion.div
+          variants={fadeUpVariants}
+          initial="hidden"
+          whileInView="visible"
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true, amount: 0.2 }}
+          className={`${style.class} `}
+        >
           <span
             className={`${style.class_wrap} ${
               getProductType === "url" || !getProductType
@@ -120,8 +139,15 @@ export default function Machine() {
               SMS Guard
             </div>
           </span>
-        </div>
-        <div className={style.title}>
+        </motion.div>
+        <motion.div
+          variants={fadeUpVariants}
+          initial="hidden"
+          whileInView="visible"
+          transition={{ duration: 0.6, delay: 0.3 }}
+          viewport={{ once: true, amount: 0.2 }}
+          className={style.title}
+        >
           <div className={style.title_left}>
             <h1 style={{ marginBottom: "10px" }}>
               Advanced Machine Learning Detection
@@ -163,8 +189,15 @@ export default function Machine() {
               </span>
             </div>
           </div>
-        </div>
-        <div className={style.input}>
+        </motion.div>
+        <motion.div
+          variants={fadeUpVariants}
+          initial="hidden"
+          whileInView="visible"
+          transition={{ duration: 0.6, delay: 0.6 }}
+          viewport={{ once: true, amount: 0.2 }}
+          className={style.input}
+        >
           <span>
             <Image
               src={"/small-logo.webp"}
@@ -261,7 +294,7 @@ export default function Machine() {
               </p>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </>
   );

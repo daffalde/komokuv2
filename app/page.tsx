@@ -12,10 +12,21 @@ export default function Home() {
 
   const [getProductType, setGetProductType] = useState<String | null>();
 
+  const [closeAnimate, setCloseAnimate] = useState<boolean>(false);
+
   function handleProduct(e: string) {
-    localStorage.setItem("productType", e);
-    setGetProductType(e);
-    setProductHover(false);
+    if (getProductType === "about") {
+      setCloseAnimate(true);
+    }
+    setTimeout(
+      () => {
+        localStorage.setItem("productType", e);
+        setGetProductType(e);
+        setProductHover(false);
+        setCloseAnimate(false);
+      },
+      getProductType === "about" ? 500 : 0,
+    );
   }
 
   useEffect(() => {
@@ -135,7 +146,9 @@ export default function Home() {
           <img src="arrow-documentation.webp" alt="Documentation" />
         </button>
       </div>
-      {getProductType === "about" ? <About /> : <Machine />}
+      <div className={closeAnimate ? "closeAnimate" : ""}>
+        {getProductType === "about" ? <About /> : <Machine />}
+      </div>
       <div className={styles.footer}>
         <ul>
           <li>

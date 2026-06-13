@@ -13,6 +13,10 @@
   font-family: var(--inter), sans-serif;
 }
 
+html {
+  scrollbar-gutter: stable;
+}
+
 .main-button {
   width: fit-content;
   height: fit-content;
@@ -104,4 +108,20 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 20px;
+}
+
+.closeAnimate {
+  position: relative;
+  animation: close 0.5s;
+}
+
+@keyframes close {
+  from {
+    opacity: 1;
+    top: 0;
+  }
+  to {
+    opacity: 0;
+    top: 100px;
+  }
 }

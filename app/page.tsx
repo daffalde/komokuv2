@@ -3,15 +3,22 @@
 import Image from "next/image";
 import styles from "./page.module.css";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Machine from "./components/Machine";
 
 export default function Home() {
-  const searchParams = useSearchParams();
-  const product = searchParams.get("product");
-
   const [ProductHover, setProductHover] = useState<boolean>(false);
+
+  const [getProductType, setGetProductType] = useState<String | null>("");
+
+  function handleProduct(e: string) {
+    localStorage.setItem("productType", e);
+    setProductHover(false);
+  }
+
+  useEffect(() => {
+    setGetProductType(localStorage.getItem("productType"));
+  });
 
   return (
     <div className="container">
@@ -32,7 +39,7 @@ export default function Home() {
                 }}
                 href="/"
               >
-                Product{" "}
+                Product
                 <img
                   className={`${styles.navbar_menu_product} ${ProductHover ? styles.navbar_menu_product_true : null}`}
                   src="./drop-down.webp"
@@ -51,12 +58,13 @@ export default function Home() {
                 <ul>
                   <li>
                     <Link
+                      onClick={() => handleProduct("url")}
                       className={
-                        product === "url" || !product
+                        getProductType === "url" || !getProductType
                           ? styles.desktop_navbar_hover_on
                           : ""
                       }
-                      href={"/?product=url"}
+                      href={"/"}
                     >
                       <Image
                         src={"/product-url.webp"}
@@ -69,12 +77,13 @@ export default function Home() {
                   </li>
                   <li>
                     <Link
+                      onClick={() => handleProduct("email")}
                       className={
-                        product === "email"
+                        getProductType === "email"
                           ? styles.desktop_navbar_hover_on
                           : ""
                       }
-                      href={"/?product=email"}
+                      href={"/"}
                     >
                       <Image
                         src={"/product-mail.webp"}
@@ -87,10 +96,13 @@ export default function Home() {
                   </li>
                   <li>
                     <Link
+                      onClick={() => handleProduct("sms")}
                       className={
-                        product === "sms" ? styles.desktop_navbar_hover_on : ""
+                        getProductType === "sms"
+                          ? styles.desktop_navbar_hover_on
+                          : ""
                       }
-                      href={"/?product=sms"}
+                      href={"/"}
                     >
                       <Image
                         src={"/product-sms.webp"}
@@ -142,7 +154,10 @@ export default function Home() {
         <ul>
           <li>
             <Link
-              className={product === "url" || !product ? styles.bnb_on : ""}
+              onClick={() => handleProduct("url")}
+              className={
+                getProductType === "url" || !getProductType ? styles.bnb_on : ""
+              }
               href={"/?product=url"}
             >
               <Image
@@ -156,8 +171,9 @@ export default function Home() {
           </li>
           <li>
             <Link
-              className={product === "email" ? styles.bnb_on : ""}
-              href={"/?product=email"}
+              onClick={() => handleProduct("email")}
+              className={getProductType === "email" ? styles.bnb_on : ""}
+              href={"/"}
             >
               <Image
                 src={"/product-mail.webp"}
@@ -170,8 +186,9 @@ export default function Home() {
           </li>
           <li>
             <Link
-              className={product === "sms" ? styles.bnb_on : ""}
-              href={"/?product=sms"}
+              onClick={() => handleProduct("sms")}
+              className={getProductType === "sms" ? styles.bnb_on : ""}
+              href={"/"}
             >
               <Image
                 src={"/product-sms.webp"}

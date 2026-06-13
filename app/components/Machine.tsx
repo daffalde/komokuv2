@@ -2,8 +2,7 @@
 
 import Image from "next/image";
 import style from "./machine.module.css";
-import { useSearchParams } from "next/navigation";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import Loading from "./Loading";
 import { Html5Qrcode } from "html5-qrcode";
 
@@ -16,8 +15,10 @@ type PredictResponse = {
 };
 
 export default function Machine() {
-  const searchParams = useSearchParams();
-  const product = searchParams.get("product");
+  const [getProductType, setGetProductType] = useState<String | null>("");
+  useEffect(() => {
+    setGetProductType(localStorage.getItem("productType"));
+  });
 
   const [url, setUrl] = useState<string>("");
   const [dataApi, setDataApi] = useState<any>();
@@ -84,9 +85,9 @@ export default function Machine() {
         <div className={`${style.class} `}>
           <span
             className={`${style.class_wrap} ${
-              product === "url" || !product
+              getProductType === "url" || !getProductType
                 ? style.class_url
-                : product === "email"
+                : getProductType === "email"
                   ? style.class_email
                   : style.class_sms
             }`}
@@ -175,14 +176,14 @@ export default function Machine() {
           </span>
           <div className={style.input_enter}>
             <textarea
-              className={`${style.text_input} ${product === "sms" || product === "email" ? style.text_input_change : null}`}
+              className={`${style.text_input} ${getProductType === "sms" || getProductType === "email" ? style.text_input_change : null}`}
               name=""
               id=""
               placeholder="Enter your URL/Text...."
               onChange={(e) => setUrl(e.target.value)}
               onKeyDown={(e) => {
                 if (e.key === "Enter") {
-                  if (product === "url" || !product) {
+                  if (getProductType === "url" || !getProductType) {
                     e.preventDefault();
                     handleClick();
                   } else {
@@ -191,7 +192,7 @@ export default function Machine() {
                 }
               }}
             ></textarea>
-            {product === "sms" || product === "email" ? null : (
+            {getProductType === "sms" || getProductType === "email" ? null : (
               <button className={style.input_scan}>
                 <Image
                   src={"/qr-scan.webp"}

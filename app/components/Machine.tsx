@@ -166,7 +166,7 @@ export default function Machine() {
                 height={35}
               />
               <span>
-                <h3>Random Forest Algorithm</h3>
+                <h4>Random Forest Algorithm</h4>
                 <p>
                   Powered by Random Forest algorithm for optimized
                   classification results.
@@ -181,7 +181,7 @@ export default function Machine() {
                 height={35}
               />
               <span>
-                <h3>QR Scanner</h3>
+                <h4>QR Scanner</h4>
                 <p>
                   Convenience with just a camera, enhancing security for URL
                   detection.

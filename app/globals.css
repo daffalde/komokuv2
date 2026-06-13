@@ -84,9 +84,9 @@ h3 {
 }
 
 h4 {
-  font-size: clamp(16px, 1rem + 0.25vw, 18px);
+  font-size: clamp(14px, 1rem + 0.25vw, 16px);
   color: var(--secondary-color);
-  font-weight: 500;
+  font-weight: 600;
 }
 body {
   width: 100%;

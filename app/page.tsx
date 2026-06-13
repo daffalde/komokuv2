@@ -40,7 +40,9 @@ export default function Home() {
         <div className={styles.navbar_menu}>
           <ul>
             <li>
-              <Link href={"/"}>Home</Link>
+              <Link onClick={() => handleProduct("url")} href={"/"}>
+                Home
+              </Link>
             </li>
             <li>
               <Link

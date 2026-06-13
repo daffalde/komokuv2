@@ -125,3 +125,9 @@ body {
     top: 100px;
   }
 }
+
+@media (max-width: 600px) {
+  .container {
+    padding: 10px;
+  }
+}

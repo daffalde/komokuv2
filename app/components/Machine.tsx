@@ -228,7 +228,7 @@ export default function Machine() {
             {getProductType === "sms" || getProductType === "email" ? null : (
               <button
                 style={{ position: "relative" }}
-                className="secondary_button"
+                className={`secondary_button ${style.input_scan}`}
               >
                 <Image
                   src={"/qr-scan.webp"}
@@ -248,7 +248,7 @@ export default function Machine() {
             <button
               style={{ padding: "5px" }}
               onClick={handleAnalyze}
-              className="main-button"
+              className={`main_button ${style.input_analyze}`}
             >
               {loading ? (
                 <Loading />

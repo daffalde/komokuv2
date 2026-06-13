@@ -219,14 +219,18 @@ export default function Home() {
             </Link>
           </li>
           <li>
-            <Link href={"https://github.com/daffalde/komokuv2"}>
+            <Link
+              onClick={() => handleProduct("about")}
+              href={"/"}
+              className={getProductType === "about" ? styles.bnb_on : ""}
+            >
               <Image
                 src={"/product-docs.webp"}
                 alt="product sms icon"
                 width={30}
                 height={30}
               />
-              Docs
+              About
             </Link>
           </li>
         </ul>

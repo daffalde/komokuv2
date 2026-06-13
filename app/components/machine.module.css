@@ -179,6 +179,9 @@
   .input_scan p {
     display: none;
   }
+  .input_analyze img {
+    transform: scale(0.8);
+  }
   .text_input {
     font-size: 16px;
   }

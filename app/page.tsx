@@ -5,14 +5,16 @@ import styles from "./page.module.css";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import Machine from "./components/Machine";
+import About from "./components/About";
 
 export default function Home() {
   const [ProductHover, setProductHover] = useState<boolean>(false);
 
-  const [getProductType, setGetProductType] = useState<String | null>("");
+  const [getProductType, setGetProductType] = useState<String | null>();
 
   function handleProduct(e: string) {
     localStorage.setItem("productType", e);
+    setGetProductType(e);
     setProductHover(false);
   }
 
@@ -117,7 +119,9 @@ export default function Home() {
               </div>
             </li>
             <li>
-              <Link href="/about">About Us</Link>
+              <Link onClick={() => handleProduct("about")} href="/">
+                About Us
+              </Link>
             </li>
           </ul>
         </div>
@@ -131,7 +135,7 @@ export default function Home() {
           <img src="arrow-documentation.webp" alt="Documentation" />
         </button>
       </div>
-      <Machine />
+      {getProductType === "about" ? <About /> : <Machine />}
       <div className={styles.footer}>
         <ul>
           <li>

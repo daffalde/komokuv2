@@ -1,0 +1,115 @@
+.about {
+  max-width: 1000px;
+  width: 100%;
+  min-height: 100dvh;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  padding: 5vh 0;
+  gap: 50px;
+  text-align: center;
+  overflow-x: hidden;
+}
+.about_button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+.about_feature {
+  width: 100%;
+  min-height: 150px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  text-align: start;
+}
+.a_f_item {
+  padding: 20px;
+  border: 2px solid var(--secondary-10-color);
+}
+.a_f_item:first-child {
+  border-radius: 20px 0 0 20px;
+}
+
+.a_f_item:last-child {
+  border-radius: 0 20px 20px 0;
+}
+.about_heroImage {
+  width: 100%;
+  border: 2px solid var(--secondary-10-color);
+  border-radius: 20px;
+}
+.about_tech {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 0;
+}
+.about_tech span {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  flex-wrap: wrap;
+}
+.about_mission {
+  display: block;
+  width: 100%;
+  max-width: 600px;
+  padding: 0 20px;
+  text-align: start;
+  border-left: 3px solid var(--secondary-color);
+}
+.about_action {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: start;
+}
+.a_a_left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  gap: 10px;
+}
+.a_a_right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+/* responsive_____________________ */
+@media (max-width: 600px) {
+  .about_feature {
+    grid-template-columns: 1fr 1fr;
+  }
+  .a_f_item:nth-child(1) {
+    border-radius: 10px 0 0 0;
+  }
+  .a_f_item:nth-child(2) {
+    border-radius: 0 10px 0 0;
+  }
+  .a_f_item:nth-child(4) {
+    border-radius: 0 0 10px 0;
+  }
+  .a_f_item:nth-child(3) {
+    border-radius: 0 0 0 10px;
+  }
+  .about_heroImage {
+    display: none;
+  }
+  .about_action {
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+  }
+}

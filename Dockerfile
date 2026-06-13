@@ -70,4 +70,4 @@ COPY --from=build /usr/src/app/.next ./.next
 EXPOSE 3000
 
 # Run the application.
-CMD ["node", "server.js"]
+CMD ["npx", "next", "start", "-H", "0.0.0.0", "-p", "3000"]

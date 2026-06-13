@@ -6,7 +6,7 @@
 }
 
 .loading img {
-  width: 100%;
+  width: 25px;
   animation: loading-anim 1s linear infinite;
 }
 

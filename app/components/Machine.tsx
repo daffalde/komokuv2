@@ -182,7 +182,7 @@ export default function Machine() {
               onChange={(e) => setUrl(e.target.value)}
               onKeyDown={(e) => {
                 if (e.key === "Enter") {
-                  if (product === "url") {
+                  if (product === "url" || !product) {
                     e.preventDefault();
                     handleClick();
                   } else {

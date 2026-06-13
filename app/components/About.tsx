@@ -1,5 +1,5 @@
-import Image from "next/image";
 import styles from "./about.module.css";
+import { motion, Variant, Variants } from "framer-motion";
 
 export default function About() {
   const aboutFeature = [
@@ -29,22 +29,60 @@ export default function About() {
     "about-tech5.webp",
     "about-tech6.webp",
   ];
+
+  const fadeUpVariants: Variants = {
+    hidden: {
+      opacity: 0,
+      y: 40,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+    },
+  };
   return (
     <>
-      <div className={styles.about}>
-        <h4>ABOUT KOMOKU </h4>
-        <h1>
+      <motion.div className={styles.about}>
+        <motion.h4
+          variants={fadeUpVariants}
+          initial="hidden"
+          whileInView="visible"
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true, amount: 0.2 }}
+        >
+          ABOUT KOMOKU{" "}
+        </motion.h4>
+        <motion.h1
+          variants={fadeUpVariants}
+          initial="hidden"
+          whileInView="visible"
+          transition={{ duration: 0.6, delay: 0.3 }}
+          viewport={{ once: true, amount: 0.2 }}
+        >
           Build to detect{" "}
           <span style={{ textDecoration: "underline" }}>threats</span> before{" "}
           <br />
           they reach you.
-        </h1>
-        <p>
+        </motion.h1>
+        <motion.p
+          variants={fadeUpVariants}
+          initial="hidden"
+          whileInView="visible"
+          transition={{ duration: 0.6, delay: 0.6 }}
+          viewport={{ once: true, amount: 0.2 }}
+        >
           Komoku uses multi-layered machine learning to identify phishing URLs,
           malicious Email, and suspicious SMS in real time keeping your data
           where it belongs.
-        </p>
-        <div className={styles.about_button}>
+        </motion.p>
+        <motion.div
+          variants={fadeUpVariants}
+          initial="hidden"
+          whileInView="visible"
+          transition={{ duration: 0.6, delay: 0.9 }}
+          viewport={{ once: true, amount: 0.2 }}
+          className={styles.about_button}
+        >
           <button
             onClick={() => {
               localStorage.setItem("productType", "url");
@@ -62,21 +100,40 @@ export default function About() {
           >
             Learn More
           </button>
-        </div>
-        <div className={styles.about_feature}>
+        </motion.div>
+        <motion.div
+          variants={fadeUpVariants}
+          initial="hidden"
+          whileInView="visible"
+          transition={{ duration: 0.6, delay: 1.2 }}
+          viewport={{ once: true, amount: 0.2 }}
+          className={styles.about_feature}
+        >
           {aboutFeature.map((e, i) => (
             <div className={styles.a_f_item} key={i}>
               <h1>{e.title}</h1>
               <p>{e.desc}</p>
             </div>
           ))}
-        </div>
-        <img
+        </motion.div>
+        <motion.img
+          variants={fadeUpVariants}
+          initial="hidden"
+          whileInView="visible"
+          transition={{ duration: 0.6, delay: 1.5 }}
+          viewport={{ once: true, amount: 0.2 }}
           className={styles.about_heroImage}
           src="./about-hero.webp"
           alt="komoku ui image"
         />
-        <div className={styles.about_tech}>
+        <motion.div
+          variants={fadeUpVariants}
+          initial="hidden"
+          transition={{ duration: 0.6 }}
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          className={styles.about_tech}
+        >
           <h4>OUR TECH STACK</h4>
           <span>
             {aboutImage.map((e, i) => (
@@ -88,15 +145,29 @@ export default function About() {
               />
             ))}
           </span>
-        </div>
-        <div className={styles.about_tech}>
+        </motion.div>
+        <motion.div
+          variants={fadeUpVariants}
+          initial="hidden"
+          whileInView="visible"
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true, amount: 0.2 }}
+          className={styles.about_tech}
+        >
           <h4>OUR MISSION</h4>
           <h3 className={styles.about_mission}>
             We believe that digital security should be accessible to everyone,
             not just those who are tech-savvy.
           </h3>
-        </div>
-        <div className={styles.about_action}>
+        </motion.div>
+        <motion.div
+          variants={fadeUpVariants}
+          initial="hidden"
+          whileInView="visible"
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true, amount: 0.2 }}
+          className={styles.about_action}
+        >
           <div className={styles.a_a_left}>
             <h2>Ready to check something?</h2>
             <p>Paset or even scan QR and get verdict in under a second.</p>
@@ -120,8 +191,8 @@ export default function About() {
               Try Komoku ↗
             </button>
           </div>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </>
   );
 }

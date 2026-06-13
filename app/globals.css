@@ -55,21 +55,18 @@
 }
 
 p {
-  /* Min: 14px, Ideal: 1rem + 0.25vw, Max: 16px */
   font-size: clamp(14px, 0.9rem + 0.25vw, 16px);
   color: var(--secondary-color);
 }
 
 h1 {
-  /* Min: 32px, Ideal: 2rem + 1.5vw, Max: 46px */
   font-size: clamp(32px, 2rem + 1.5vw, 46px);
   color: var(--secondary-color);
   font-weight: 600;
-  line-height: 1.2; /* Tambahan agar teks judul tidak bertabrakan saat multiline */
+  line-height: 1.2;
 }
 
 h2 {
-  /* Min: 24px, Ideal: 1.5rem + 1vw, Max: 32px */
   font-size: clamp(24px, 1.5rem + 1vw, 32px);
   font-weight: 500;
   color: var(--secondary-color);
@@ -77,14 +74,12 @@ h2 {
 }
 
 h3 {
-  /* Min: 20px, Ideal: 1.2rem + 0.5vw, Max: 24px */
   font-size: clamp(20px, 1.2rem + 0.5vw, 24px);
   color: var(--secondary-color);
   font-weight: 600;
 }
 
 h4 {
-  /* Min: 16px, Ideal: 1rem + 0.25vw, Max: 18px */
   font-size: clamp(16px, 1rem + 0.25vw, 18px);
   color: var(--secondary-color);
   font-weight: 500;

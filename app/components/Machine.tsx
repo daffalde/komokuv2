@@ -256,8 +256,8 @@ export default function Machine() {
                 <Image
                   src={"/analyze.webp"}
                   alt="ico analyze"
-                  width={33}
-                  height={33}
+                  width={25}
+                  height={25}
                 />
               )}
             </button>

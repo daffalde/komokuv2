@@ -162,7 +162,14 @@ export default function Home() {
           </li>
           <li>|</li>
           <li>
-            <Link href={"/contact"}>Contact Developer ↗</Link>
+            <Link
+              onClick={() =>
+                window.open("https://www.linkedin.com/in/daffa-alde/")
+              }
+              href={"/"}
+            >
+              Contact Developer ↗
+            </Link>
           </li>
         </ul>
         <p>© 2026 Komoku. Built for advanced phishing detection.</p>

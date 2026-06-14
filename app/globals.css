@@ -125,7 +125,13 @@ body {
     top: 100px;
   }
 }
-
+.error_input {
+  color: rgb(220, 23, 23);
+  position: absolute;
+  bottom: 0;
+  display: block;
+  padding: 20px 0;
+}
 @media (max-width: 600px) {
   .container {
     padding: 10px;

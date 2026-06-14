@@ -94,6 +94,7 @@
   justify-content: space-between;
   align-items: start;
   gap: 10px;
+  position: relative;
 }
 .text_input {
   width: 100%;

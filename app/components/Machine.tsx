@@ -27,6 +27,7 @@ export default function Machine() {
   const [loading, setLoading] = useState<boolean>(false);
 
   const handleClick = async (e?: string) => {
+    setInputNull(false);
     setHasilErr(false);
     setLoading(true);
     try {
@@ -76,8 +77,15 @@ export default function Machine() {
     if (hasilErr) return `rgba(144, 85, 253, ${alpha})`;
   };
 
+  const [inputNull, setInputNull] = useState<boolean>(false);
+
   function handleAnalyze() {
-    handleClick();
+    if (url !== "") {
+      setInputNull(false);
+      handleClick();
+    } else {
+      setInputNull(true);
+    }
   }
 
   const fadeUpVariants: Variants = {
@@ -261,6 +269,9 @@ export default function Machine() {
                 />
               )}
             </button>
+            {inputNull && (
+              <p className="error_input">Please enter a valid domain</p>
+            )}
           </div>
           <div
             className={`${style.result} ${dataApi || hasilErr ? style.result_show : ""}`}

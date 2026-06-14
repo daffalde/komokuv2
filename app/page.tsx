@@ -154,14 +154,6 @@ export default function Home() {
       <div className={styles.footer}>
         <ul>
           <li>
-            <Link href={"/terms"}>Terms</Link>
-          </li>
-          <li>|</li>
-          <li>
-            <Link href={"/privacy"}>Privacy</Link>
-          </li>
-          <li>|</li>
-          <li>
             <Link
               onClick={() =>
                 window.open("https://www.linkedin.com/in/daffa-alde/")

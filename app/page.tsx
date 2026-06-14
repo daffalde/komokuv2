@@ -93,11 +93,11 @@ export default function Home() {
                   <li>
                     <Link
                       onClick={() => handleProduct("email")}
-                      className={
+                      className={`${
                         getProductType === "email"
                           ? styles.desktop_navbar_hover_on
                           : ""
-                      }
+                      } ${styles.coming_soon}`}
                       href={"/"}
                     >
                       <Image
@@ -112,11 +112,11 @@ export default function Home() {
                   <li>
                     <Link
                       onClick={() => handleProduct("sms")}
-                      className={
+                      className={`${
                         getProductType === "sms"
                           ? styles.desktop_navbar_hover_on
                           : ""
-                      }
+                      } ${styles.coming_soon}`}
                       href={"/"}
                     >
                       <Image

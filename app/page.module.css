@@ -103,6 +103,14 @@
   animation: product-off 0.3s;
 }
 
+.coming_soon {
+  opacity: 0.4;
+  pointer-events: none;
+}
+.coming_soon::after {
+  content: "Coming Soon";
+}
+
 .desktop_navbar_hover ul {
   list-style: none;
   padding: 5px;
@@ -113,6 +121,10 @@
   justify-content: center;
   align-items: center;
   gap: 2px;
+  width: fit-content;
+}
+.desktop_navbar_hover ul li {
+  width: 100%;
 }
 .desktop_navbar_hover ul li a {
   display: flex;
@@ -122,7 +134,6 @@
   text-decoration: none;
   font-size: 16px;
   width: 100%;
-  min-width: 200px;
   padding: 10px;
   border-radius: 5px;
   gap: 10px;
